@@ -1,0 +1,7 @@
+# 公開リポジトリには index.html だけを入れる。以下の自動化・状態・ログは非公開。
+build_musings.py
+nightly-update.sh
+README.md
+.published.json
+*.log
+__pycache__/
