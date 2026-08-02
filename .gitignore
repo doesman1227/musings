@@ -1,7 +1,13 @@
-# 公開リポジトリには index.html だけを入れる。以下の自動化・状態・ログは非公開。
+# 公開リポジトリには index.html と posts/ (詳細ページ) だけを入れる。
+# 以下の自動化スクリプト・データ・ログは非公開。
 build_musings.py
+panel_server.py
+blogsite.py
 nightly-update.sh
 README.md
+posts.json
+.state.json
 .published.json
+.pending.json
 *.log
 __pycache__/
