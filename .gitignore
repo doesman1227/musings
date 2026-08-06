@@ -7,6 +7,7 @@ nightly-update.sh
 README.md
 posts.json
 .state.json
+.state.json.bak-*
 .published.json
 .pending.json
 *.log
