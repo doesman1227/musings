@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>振り回されず、自分の意思で — 日々のつぶやき</title>
+<meta name="description" content="自分にとって満足できる人生とは何か、人生のKGIをどう定めるかを考えた。 幸福、自由、健康、お金、人間関係、好奇心。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F4F2EB;--surface:#FCFBF6;--ink:#24261E;--muted:#5E6252;--faint:#949585;
+    --line:#E3E0D5;--line-soft:#ECEAE1;--accent:#4C7A5A;--accent-ink:#3C6349;--accent-wash:#E7EEE7;
+    --serif:"Noto Serif JP",serif;--sans:"Noto Sans JP",system-ui,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;}
+  @media(prefers-color-scheme:dark){:root{--bg:#15161A;--surface:#1D1F23;--ink:#E9E8DF;--muted:#A0A296;
+    --faint:#6E7166;--line:#2C2E2C;--line-soft:#26282A;--accent:#84AE8D;--accent-ink:#9DC4A5;--accent-wash:#202a22;}}
+  :root[data-theme="dark"]{--bg:#15161A;--surface:#1D1F23;--ink:#E9E8DF;--muted:#A0A296;
+    --faint:#6E7166;--line:#2C2E2C;--line-soft:#26282A;--accent:#84AE8D;--accent-ink:#9DC4A5;--accent-wash:#202a22;}
+  :root[data-theme="light"]{--bg:#F4F2EB;--surface:#FCFBF6;--ink:#24261E;--muted:#5E6252;--faint:#949585;
+    --line:#E3E0D5;--line-soft:#ECEAE1;--accent:#4C7A5A;--accent-ink:#3C6349;--accent-wash:#E7EEE7;}
+  *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;
+    line-height:1.9;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px}
+  a{color:var(--accent-ink)}
+  .topnav{padding:22px 0 0;display:flex;justify-content:space-between;gap:12px}
+  .topnav a{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted);text-decoration:none}
+  .topnav a:hover{color:var(--accent-ink)}
+  header.masthead{padding:36px 0 22px}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 16px}
+  h1.title{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,6vw,2.9rem);line-height:1.3;
+    letter-spacing:.04em;margin:0 0 14px;text-wrap:balance}
+  .intro{font-family:var(--serif);font-weight:500;font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.9;
+    color:var(--muted);margin:0;max-width:42ch}
+  .counter{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--faint)}
+  .counter b{color:var(--muted);font-weight:700}
+  /* filters */
+  .filters{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;padding:14px 0;margin-bottom:6px;
+    background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+  .chip{font-family:var(--sans);font-size:13px;font-weight:500;padding:6px 14px;border:1px solid var(--line);
+    border-radius:100px;background:var(--surface);color:var(--muted);cursor:pointer;letter-spacing:.02em;
+    transition:background .18s,color .18s,border-color .18s}
+  .chip:hover{border-color:var(--accent);color:var(--accent-ink)}
+  .chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  :root[data-theme="dark"] .chip.active{color:#16181a}
+  @media(prefers-color-scheme:dark){.chip.active{color:#16181a}}
+  /* list */
+  .list{padding:12px 0 20px;display:flex;flex-direction:column;gap:2px}
+  .row{display:block;text-decoration:none;color:inherit;padding:20px 4px;border-bottom:1px solid var(--line-soft)}
+  .row:hover{background:var(--surface)}
+  .row .rmeta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:7px}
+  .rdate{font-family:var(--mono);font-size:12.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+  .cat{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent-ink);background:var(--accent-wash);padding:3px 9px;border-radius:4px}
+  .row h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.12rem,3vw,1.32rem);line-height:1.55;
+    letter-spacing:.02em;margin:0 0 6px;color:var(--ink);text-wrap:balance}
+  .row:hover h2{color:var(--accent-ink)}
+  .excerpt{font-size:14px;color:var(--muted);margin:0;line-height:1.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .arrow{color:var(--faint);margin-left:6px}
+  .pending-badge{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#fff;
+    background:var(--faint);padding:2px 8px;border-radius:4px}
+  :root[data-theme="dark"] .pending-badge{color:#16181a}
+  @media(prefers-color-scheme:dark){.pending-badge{color:#16181a}}
+  .row.hide{display:none}
+  .empty{display:none;text-align:center;padding:50px 0;color:var(--faint);font-family:var(--serif)}
+  /* detail */
+  .article{padding:20px 0 8px}
+  .article .ameta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .article h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,4.4vw,2.1rem);line-height:1.45;
+    letter-spacing:.03em;margin:0 0 22px;text-wrap:balance}
+  .article .abody{font-size:16.5px;line-height:2;color:var(--ink)}
+  .article .abody p{margin:0 0 20px}
+  .abody .lead{font-family:var(--serif);color:var(--muted);font-size:1.05rem;line-height:1.95;
+    padding:0 0 18px;margin:0 0 24px;border-bottom:1px solid var(--line-soft)}
+  .abody h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;letter-spacing:.02em;
+    margin:34px 0 12px;line-height:1.5}
+  .abody h3{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:26px 0 10px}
+  .abody ul,.abody ol{margin:0 0 20px;padding-left:1.4em}
+  .abody li{margin:0 0 7px;line-height:1.85}
+  .abody blockquote{margin:0 0 20px;padding:4px 0 4px 20px;border-left:2px solid var(--accent);
+    color:var(--muted);font-family:var(--serif)}
+  .abody pre{background:var(--surface);border:1px solid var(--line);border-radius:6px;
+    padding:14px 16px;overflow-x:auto;margin:0 0 20px}
+  .abody pre code{font-family:var(--mono);font-size:13px;color:var(--ink);white-space:pre}
+  .abody code{font-family:var(--mono);font-size:.9em;background:var(--surface);
+    border:1px solid var(--line-soft);border-radius:3px;padding:1px 5px}
+  .abody pre code{background:none;border:0;padding:0}
+  .abody hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+  .abody strong{font-weight:700}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--faint);border:1px solid var(--line-soft);border-radius:3px;padding:2px 8px}
+  .tag::before{content:"#";color:var(--accent);opacity:.7}
+  .pagenav{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:20px;border-top:1px solid var(--line-soft)}
+  .pagenav a{font-family:var(--sans);font-size:13.5px;text-decoration:none;color:var(--muted);max-width:46%}
+  .pagenav a:hover{color:var(--accent-ink)}
+  .pagenav .n{display:block;font-family:var(--mono);font-size:11px;color:var(--faint);margin-bottom:3px}
+  .draftnote{font-family:var(--mono);font-size:12px;color:var(--faint);background:var(--surface);
+    border:1px dashed var(--line);border-radius:6px;padding:10px 14px;margin:0 0 22px}
+  footer{margin-top:20px;padding:34px 0 60px;border-top:1px solid var(--line)}
+  footer .back{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-decoration:none}
+  footer .back:hover{color:var(--accent-ink)}
+  .disclaimer{margin-top:16px;font-size:12px;line-height:1.8;color:var(--faint);max-width:52ch}
+</style></head><body>
+<div class="wrap">
+  <nav class="topnav"><a href="../">← つぶやき一覧</a><a href="../../">m-note トップ</a></nav>
+  <article class="article">
+    
+    <div class="ameta"><span class="rdate">2026.10.12</span><span class="cat">内省・学び</span></div>
+    <h1>振り回されず、自分の意思で</h1>
+    <div class="abody"><h2>【人生観】振り回されず、自分の意思で</h2>
+<blockquote>自分の意思で生きるとは、仕事や周りの人たちに振り回されて生きないこと。</blockquote>
+<h2>気づいたこと</h2>
+<p>自分にとって満足できる人生とは何か、人生のKGIをどう定めるかを考えた。 幸福、自由、健康、お金、人間関係、好奇心。 どれか一つだけを人生の最重要目標にすることには、違和感があった。</p>
+<p>他人から一切評価されず、誰にも知られず、褒められることもなかったとしても、やりたいことは変わるか。 変わらないと思った。 他人の評価は、自分の行動を決める唯一の基準ではなかった。</p>
+<p>何かをやりたいと思うとき、大きいのは好奇心と、やっている最中の楽しさだった。 その二つを比べると、「知ること」のほうが近い。 自分を成長させたいというより、世界そのものを知りたい。 役に立たなくても、成果が出なくても、知ることには価値があると思った。</p>
+<p>知りたいのは知識だけでもなかった。 美しい景色の壮大さに心から感動したい。 古い建物や絵画を見て、当時の人たちの思いや工夫に思いを馳せたい。 人と話して新しい考え方に触れることにも、一人でじっくり味わうことにも、価値を感じる。</p>
+<p>時間とお金に余裕があったら、気の向くままに旅をし、自然の中で過ごし、街を歩いて建築や美術を楽しみ、人と交流し、何かを創作したい。 そうなれば、退屈な時間や面倒なことが残っていても、満足できそうだと思った。 すべてを完璧にする必要はない。</p>
+<p>仕事やお金の話になったとき、資産運用の具体策へ話が移った。 投資の話を深掘りしたくない、お金に囚われたくない、と思った。 経済的な安心は大事だが、お金を増やすこと自体が人生の目的になるのは望んでいない。 その境界が、はっきりした。</p>
+<p>人生の終わりに振り返って「いい人生だった」と思えるのは、どんなときか。 いろいろな世界を見られてよかった。 たくさんのことを知れて面白かった。 自分の意思で生きられた。 楽しい時間がたくさんあった。 いろんな人と関わり合えた。</p>
+<p>「自分の意思で生きること」と「自分の欲求のままに生きること」は違う。 仕事や周りの人たちに振り回されて生きないこと。 自由の中でも大事なのは、時間やお金の自由だけでなく、精神的な自由だった。 ここが、今回の中心だった。</p>
+<h2>まとまったこと</h2>
+<ul><li>人生のKGIは、人生を採点するためではなく、日々の選択に迷ったときに方向を確かめる指針として使う</li><li>現時点のKGI: 自分の意思で自由に生き、世界を知る楽しさと、人生の豊かな体験を味わう</li><li>知ること自体に価値がある。実用や成果に結びつかなくてもいい</li><li>知識だけでなく、景色・自然・建築・美術に触れて感動することも大切にしたい</li><li>人生の価値を一つの尺度に集約する必要はない</li><li>求めている自由は、時間やお金だけでなく、仕事や周囲に振り回されない精神的な自由</li><li>仕事は人生の中心ではない。将来は週3日程度の勤務で、今と同じくらいの生活水準を保ちたい</li><li>お金は目的ではなく、自由な暮らしを支える手段。お金に囚われたくない</li><li>行動候補は義務やKPIではなく、KGIを日々思い出すための候補</li></ul>
+<h2>まだ言葉になっていないこと</h2>
+<ul><li>精神的な自由を損なう具体的な状況は何か</li><li>仕事や人間関係で、どんな境界線を設けると自分の意思を保ちやすいか</li><li>望む体験や活動を、今の生活の中でどう増やしていくか</li><li>週3日程度の勤務を、どんな方法で実現するか</li><li>旅・自然・芸術・学習・創作・人との交流に、今どれくらい時間を使えているか</li></ul>
+<h2>関連ノート</h2>
+<ul><li>【人生観】判断基準が決まったとき、人生が変わった — 前日の対話。判断基準を「楽しいか」に置いた回</li><li>【人生観】自分の判断と、自分の言葉で — 自分の意思で選ぶ、という同じ軸</li><li>【内省】危険にではなく、未知に惹かれていた — 知らない世界に惹かれる気持ち</li><li>【マインドフルネス】欲を消すのではなく、距離を変える — お金との距離感という同じ問い</li></ul>
+<h2>元の対話</h2>
+<ul><li>Idea-2026-10-12-0633</li></ul></div>
+    <div class="tags"><span class="tag">人生観</span><span class="tag">価値観</span><span class="tag">自己理解</span><span class="tag">好奇心</span></div>
+    <nav class="pagenav"><span></span><a href="p147.html" style="text-align:right"><span class="n">古い投稿 →</span>受け入れることは、諦めることではない</a></nav>
+  </article>
+  <footer>
+    <a class="back" href="../">← つぶやき一覧へ戻る</a>
+    <p class="disclaimer">専門家ではない個人が、日々の思考を書き留めた個人的なまとめです。内容の正確性を保証するものではありません。</p>
+  </footer>
+</div>
+</body></html>
