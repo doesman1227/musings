@@ -12,3 +12,7 @@ posts.json
 .pending.json
 *.log
 __pycache__/
+# バックアップ類。git_push は `git add -A` するので、ここで止めないと公開リポジトリに入る。
+*.bak
+*.bak-*
+*.bak2-*
