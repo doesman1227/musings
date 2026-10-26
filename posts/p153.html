@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>襲ってこない、という安心感｜日々のつぶやき</title>
+<meta name="description" content="早朝5時ごろ、千葉の住宅街でタヌキを見かけた。 猫は街でよく見かけるのに、タヌキはあまり見かけない。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F4F2EB;--surface:#FCFBF6;--ink:#24261E;--muted:#5E6252;--faint:#949585;
+    --line:#E3E0D5;--line-soft:#ECEAE1;--accent:#4C7A5A;--accent-ink:#3C6349;--accent-wash:#E7EEE7;
+    --serif:"Noto Serif JP",serif;--sans:"Noto Sans JP",system-ui,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;}
+  @media(prefers-color-scheme:dark){:root{--bg:#15161A;--surface:#1D1F23;--ink:#E9E8DF;--muted:#A0A296;
+    --faint:#6E7166;--line:#2C2E2C;--line-soft:#26282A;--accent:#84AE8D;--accent-ink:#9DC4A5;--accent-wash:#202a22;}}
+  :root[data-theme="dark"]{--bg:#15161A;--surface:#1D1F23;--ink:#E9E8DF;--muted:#A0A296;
+    --faint:#6E7166;--line:#2C2E2C;--line-soft:#26282A;--accent:#84AE8D;--accent-ink:#9DC4A5;--accent-wash:#202a22;}
+  :root[data-theme="light"]{--bg:#F4F2EB;--surface:#FCFBF6;--ink:#24261E;--muted:#5E6252;--faint:#949585;
+    --line:#E3E0D5;--line-soft:#ECEAE1;--accent:#4C7A5A;--accent-ink:#3C6349;--accent-wash:#E7EEE7;}
+  *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;
+    line-height:1.9;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px}
+  a{color:var(--accent-ink)}
+  .topnav{padding:22px 0 0;display:flex;justify-content:space-between;gap:12px}
+  .topnav a{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted);text-decoration:none}
+  .topnav a:hover{color:var(--accent-ink)}
+  header.masthead{padding:36px 0 22px}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 16px}
+  h1.title{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,6vw,2.9rem);line-height:1.3;
+    letter-spacing:.04em;margin:0 0 14px;text-wrap:balance}
+  .mn-tagline{font-family:var(--serif);font-weight:500;font-size:clamp(1.05rem,2.6vw,1.4rem);line-height:1.75;letter-spacing:.02em;margin:.1em 0 1.1em;opacity:.85}
+  .intro{font-family:var(--serif);font-weight:500;font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.9;
+    color:var(--muted);margin:0;max-width:42ch}
+  .counter{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--faint)}
+  .counter b{color:var(--muted);font-weight:700}
+  /* filters */
+  .filters{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;padding:14px 0;margin-bottom:6px;
+    background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+  .chip{font-family:var(--sans);font-size:13px;font-weight:500;padding:6px 14px;border:1px solid var(--line);
+    border-radius:100px;background:var(--surface);color:var(--muted);cursor:pointer;letter-spacing:.02em;
+    transition:background .18s,color .18s,border-color .18s}
+  .chip:hover{border-color:var(--accent);color:var(--accent-ink)}
+  .chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  :root[data-theme="dark"] .chip.active{color:#16181a}
+  @media(prefers-color-scheme:dark){.chip.active{color:#16181a}}
+  /* list */
+  .list{padding:12px 0 20px;display:flex;flex-direction:column;gap:2px}
+  .row{display:block;text-decoration:none;color:inherit;padding:20px 4px;border-bottom:1px solid var(--line-soft)}
+  .row:hover{background:var(--surface)}
+  .row .rmeta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:7px}
+  .rdate{font-family:var(--mono);font-size:12.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+  .cat{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent-ink);background:var(--accent-wash);padding:3px 9px;border-radius:4px}
+  .row h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.12rem,3vw,1.32rem);line-height:1.55;
+    letter-spacing:.02em;margin:0 0 6px;color:var(--ink);text-wrap:balance}
+  .row:hover h2{color:var(--accent-ink)}
+  .excerpt{font-size:14px;color:var(--muted);margin:0;line-height:1.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .arrow{color:var(--faint);margin-left:6px}
+  .pending-badge{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;color:#fff;
+    background:var(--faint);padding:2px 8px;border-radius:4px}
+  :root[data-theme="dark"] .pending-badge{color:#16181a}
+  @media(prefers-color-scheme:dark){.pending-badge{color:#16181a}}
+  .row.hide{display:none}
+  .empty{display:none;text-align:center;padding:50px 0;color:var(--faint);font-family:var(--serif)}
+  /* detail */
+  .article{padding:20px 0 8px}
+  .article .ameta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .article h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,4.4vw,2.1rem);line-height:1.45;
+    letter-spacing:.03em;margin:0 0 22px;text-wrap:balance}
+  .article .abody{font-size:16.5px;line-height:2;color:var(--ink)}
+  .article .abody p{margin:0 0 20px}
+  .abody .lead{font-family:var(--serif);color:var(--muted);font-size:1.05rem;line-height:1.95;
+    padding:0 0 18px;margin:0 0 24px;border-bottom:1px solid var(--line-soft)}
+  .abody h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;letter-spacing:.02em;
+    margin:34px 0 12px;line-height:1.5}
+  .abody h3{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:26px 0 10px}
+  .abody ul,.abody ol{margin:0 0 20px;padding-left:1.4em}
+  .abody li{margin:0 0 7px;line-height:1.85}
+  .abody blockquote{margin:0 0 20px;padding:4px 0 4px 20px;border-left:2px solid var(--accent);
+    color:var(--muted);font-family:var(--serif)}
+  .abody pre{background:var(--surface);border:1px solid var(--line);border-radius:6px;
+    padding:14px 16px;overflow-x:auto;margin:0 0 20px}
+  .abody pre code{font-family:var(--mono);font-size:13px;color:var(--ink);white-space:pre}
+  .abody code{font-family:var(--mono);font-size:.9em;background:var(--surface);
+    border:1px solid var(--line-soft);border-radius:3px;padding:1px 5px}
+  .abody pre code{background:none;border:0;padding:0}
+  .abody hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+  .abody strong{font-weight:700}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--faint);border:1px solid var(--line-soft);border-radius:3px;padding:2px 8px}
+  .tag::before{content:"#";color:var(--accent);opacity:.7}
+  a.tag{text-decoration:none;transition:color .18s,border-color .18s}
+  a.tag:hover{color:var(--ink);border-color:var(--accent)}
+  a.tag .n{margin-left:6px;opacity:.55}
+  .pagenav{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:20px;border-top:1px solid var(--line-soft)}
+  .pagenav a{font-family:var(--sans);font-size:13.5px;text-decoration:none;color:var(--muted);max-width:46%}
+  .pagenav a:hover{color:var(--accent-ink)}
+  .pagenav .n{display:block;font-family:var(--mono);font-size:11px;color:var(--faint);margin-bottom:3px}
+  .draftnote{font-family:var(--mono);font-size:12px;color:var(--faint);background:var(--surface);
+    border:1px dashed var(--line);border-radius:6px;padding:10px 14px;margin:0 0 22px}
+  footer{margin-top:20px;padding:34px 0 60px;border-top:1px solid var(--line)}
+  footer .back{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-decoration:none}
+  footer .back:hover{color:var(--accent-ink)}
+  .disclaimer{margin-top:16px;font-size:12px;line-height:1.8;color:var(--faint);max-width:52ch}
+</style></head><body>
+<div class="wrap">
+  <nav class="topnav"><a href="../">← つぶやき一覧</a><a href="../../">m-note トップ</a></nav>
+  <article class="article">
+    
+    <div class="ameta"><span class="rdate">2026.10.24</span><span class="cat">内省・学び</span></div>
+    <h1>襲ってこない、という安心感</h1>
+    <div class="abody"><blockquote>猫は自分を襲ってこないという安心感がある。</blockquote>
+<h2>気づいたこと</h2>
+<p>早朝5時ごろ、千葉の住宅街でタヌキを見かけた。 猫は街でよく見かけるのに、タヌキはあまり見かけない。 タヌキは夜行性の傾向が強く、暗い時間に見かけたのは自然なことだった。</p>
+<p>カラスもスズメも野生動物なのに、街中でよく見かける。 人間の生活圏をうまく利用して暮らしている。 街は人間だけの空間ではなく、動物にとっても生活の場なのだと思った。</p>
+<p>そのうち、動物によって自分の感情が違うことに気づいた。 猫、スズメ、リスには、親しみや安心感がある。 タヌキには興味とかわいさがあるけれど、少し怖い。 人に飼われていない犬には、嫌悪感や危機感を覚えることがある。 ネズミは小さいのに、嫌悪感がある。 大きさだけでは説明できなかった。</p>
+<p>猫に親しみを感じるのは、まず、自分を襲ってこないという安心感があるからだった。 それに、かわいい。 感染症の心配がまったくないわけではないけれど、過度に心配しなくてもいいという感覚がある。 ネズミには、食べ物を荒らすことや、病原菌を運ぶことのイメージがあった。 感情は、かわいらしさだけでなく、危険についての自分の認識にも左右されているのかもしれない。</p>
+<p>犬や馬や亀のように、人間と一緒に暮らす動物もいる。 そうした動物が人間と一緒に街を歩いている状態は、理想の街なのかもしれないと思った。 どの動物が好きか、という問いが、人間と動物がどんな関係でいれば街を心地よく感じるのか、という問いに広がっていった。</p>
+<h2>まとまったこと</h2>
+<ul><li>猫・スズメ・リスには親しみや安心感、タヌキには興味と少しの怖さ、ネズミには嫌悪感がある</li><li>動物への感情は、かわいらしさ、危険性の認識、感染症などへのイメージ、人間との関係性で左右されている、という仮説</li><li>親しみと安全性は同じではない。自分の感情を理解することと、実際の危険を判断することは分けて考える</li><li>人間と動物が共に暮らすことは、すべての動物を生活空間に近づけることではない</li><li>「支配できる動物」への安心感と、動物が街に自然にいることへの親しみは、別の側面かもしれない</li><li>感情を無理に変えようとせず、まずはそのまま理解する</li></ul>
+<h2>まだ言葉になっていないこと</h2>
+<ul><li>なぜ猫には、襲ってこなさそうだという安心感を覚えるのか</li><li>タヌキに感じる「かわいいけれど少し怖い」は、何から生まれているのか</li><li>ネズミへの嫌悪感は、実際の危険と病原菌のイメージのどちらに強く影響されているのか</li><li>自分にとって理想の街では、野生動物と人間はどのくらいの距離で暮らしているのか</li><li>動物が街にいること自体が心地よいのか、共に暮らしていると感じられることが大事なのか</li></ul>
+<h2>関連ノート</h2>
+<ul><li>【生物】景色ではなく、心を整える環境 — 生き物が動いている様子を見ると落ち着く、という同じ感覚</li><li>【内省】危険にではなく、未知に惹かれていた — 興味と怖さが同居する感覚</li></ul>
+<h2>元の対話</h2>
+<ul><li>Idea-2026-10-24-0626</li></ul></div>
+    <div class="tags"><a class="tag" href="../tags/te887aae784b6e8a6b3e5af9f.html">自然観察</a><a class="tag" href="../tags/te887aae5b7b1e79086e8a7a3.html">自己理解</a><a class="tag" href="../tags/te6849fe68385.html">感情</a><a class="tag" href="../tags/te6b49ee5af9f.html">洞察</a></div>
+    <nav class="pagenav"><a href="p154.html"><span class="n">← 新しい投稿</span>理解することと、好むことは違う</a><a href="p152.html" style="text-align:right"><span class="n">古い投稿 →</span>何気ない会話に、人柄がにじむ</a></nav>
+  </article>
+  <footer>
+    <a class="back" href="../">← つぶやき一覧へ戻る</a>
+    <p class="disclaimer">専門家ではない個人が、日々の思考を書き留めた個人的なまとめです。内容の正確性を保証するものではありません。</p>
+  </footer>
+</div>
+</body></html>
